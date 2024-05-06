@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock Over Image</title>
+    <style>
+        #container {
+            position: relative;
+        }
+        #background-image {
+            width: 100%;
+            height: auto;
+        }
+        #clock {
+            position: absolute;
+            top: 200px;
+            left: 20px;
+            font-size: 48px;
+            font-family: Arial, sans-serif;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img id="background-image" src="/Users/dzugrav/Downloads/digital/Images/screen.png" alt="Background Image">
+        <div id="clock"></div>
+    </div>
+
+    <script>
+        function updateTime() {
+            var currentTime = new Date();
+            var hours = currentTime.getHours();
+            var minutes = currentTime.getMinutes();
+            var seconds = currentTime.getSeconds();
+            var meridiem = "AM";
+
+            if (hours > 12) {
+                hours = hours - 12;
+                meridiem = "PM";
+            }
+
+            if (hours === 0) {
+                hours = 12;
+            }
+
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+
+            var clockDiv = document.getElementById('clock');
+            clockDiv.innerText = hours + ":" + minutes + ":" + seconds + " " + meridiem;
+        }
+
+        setInterval(updateTime, 1000); // Update every 1 second
+    </script>
+</body>
+</html>
+
